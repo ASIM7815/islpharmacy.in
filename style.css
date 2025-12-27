@@ -5,10 +5,18 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+html {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
 body {
   position: relative;
   width: 100%;
+  max-width: 100vw;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
 /* ===== TOP BAR ===== */
@@ -21,6 +29,9 @@ body {
   align-items: center;
   padding: 12px 20px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 .top-bar .left {
@@ -64,6 +75,9 @@ body {
   padding: 15px 24px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   position: relative;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 .header-container {
@@ -137,12 +151,24 @@ body {
   border: none;
   cursor: pointer;
   padding: 8px;
-  z-index: 100000;
-  position: relative;
+  z-index: 100001;
+  position: fixed;
+  top: 20px;
+  right: 20px;
   width: 44px;
   height: 44px;
   align-items: center;
   justify-content: center;
+}
+
+/* Show hamburger on mobile screens */
+@media (max-width: 767px) {
+  .menu-toggle {
+    display: flex !important;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
 }
 
 .hamburger {
@@ -201,7 +227,8 @@ body {
 .slider {
   position: relative;
   width: 100%;
-  height: 280px; /* Reduced for mobile */
+  max-width: 100vw;
+  height: 500px; /* Increased for computer view */
   overflow: hidden;
   background: linear-gradient(135deg, #1e5631 0%, #2d7a3e 100%);
   display: flex;
@@ -225,13 +252,76 @@ body {
   max-height: 100%;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain; /* Changed from cover to contain for full visibility */
   opacity: 0;
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: scale(1.1);
 }
 
 .slides img.active {
   opacity: 1;
+  transform: scale(1);
+}
+
+/* Slide animation variants */
+.slides img.slide-in-right {
+  animation: slideInFromRight 0.8s ease-out forwards;
+}
+
+.slides img.slide-in-left {
+  animation: slideInFromLeft 0.8s ease-out forwards;
+}
+
+.slides img.fade-scale {
+  animation: fadeAndScale 0.8s ease-out forwards;
+}
+
+.slides img.zoom-in {
+  animation: zoomIn 0.8s ease-out forwards;
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100%) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes fadeAndScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8) rotate(-2deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(1.3);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* Buttons */
@@ -269,6 +359,10 @@ body {
 .slider .next{right:10px;}
 
 @media (max-width: 767px) {
+  .slider {
+    height: 280px; /* Reduced height for mobile */
+  }
+  
   .slider button {
     padding: 10px 12px;
     font-size: 16px;
@@ -960,24 +1054,52 @@ body {
       margin-left: 0;
   }
   
-  .menu ul {
-    justify-content: center;
+  /* Only apply this to non-mobile (tablets) */
+  @media (min-width: 768px) {
+    .menu ul {
+      justify-content: center;
+    }
   }
 }
 
 
 @media (max-width: 767px) {
+  /* Prevent horizontal scroll on mobile */
+  html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  * {
+    max-width: 100%;
+  }
+
   .top-bar {
     display: none;
   }
 
-  .menu-toggle {
-      display: flex;
-      position: relative;
-      top: auto;
-      right: auto;
-      transform: none;
-      flex-shrink: 0;
+  .main-header {
+    padding: 12px 15px;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  .header-container {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .logo-section {
+    max-width: calc(100vw - 80px);
+  }
+
+  .logo-section img {
+    height: 60px;
+  }
+
+  .college-info h1 {
+    font-size: 16px;
   }
 
   .menu {
@@ -986,11 +1108,20 @@ body {
       position: static;
   }
 
-  /* Full-page menu overlay */
+  /* Reset default menu styles for mobile */
   .menu ul {
-    display: none;
+    display: none !important;
+    list-style: none;
+    flex-wrap: nowrap;
+    padding-top: 0;
+    gap: 0;
+  }
+
+  /* Full-page menu overlay when active */
+  .menu ul.active {
+    display: flex !important;
     flex-direction: column;
-    width: 100vw;
+    width: 100%;
     min-height: 100vh;
     height: 100vh;
     background: linear-gradient(135deg, #1e5631 0%, #2d7a3e 50%, #1e5631 100%);
@@ -999,68 +1130,97 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 99999;
-    padding: 80px 20px 40px 20px;
+    z-index: 100000;
+    padding: 100px 30px 40px 30px;
     margin: 0;
-    animation: slideInMenu 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    animation: slideInMenu 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
     justify-content: flex-start;
-    gap: 0;
+  }
+
+  /* Full-page menu overlay when active */
+  .menu ul.active {
+    display: flex !important;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    height: 100vh;
+    background: linear-gradient(135deg, #1e5631 0%, #2d7a3e 50%, #1e5631 100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100000;
+    padding: 100px 30px 40px 30px;
+    margin: 0;
+    animation: slideInMenu 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
   }
 
   @keyframes slideInMenu {
     from {
       opacity: 0;
-      transform: translateY(-100%);
+      transform: scale(0.95);
     }
     to {
       opacity: 1;
-      transform: translateY(0);
+      transform: scale(1);
     }
   }
 
-  .menu ul.active {
-    display: flex;
-  }
-
-  /* Menu header */
-  .menu ul::before {
-    content: "MENU";
-    position: absolute;
-    top: 30px;
+  /* Close icon in menu */
+  .menu ul.active::before {
+    content: "✕";
+    position: fixed;
+    top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.7);
-    font-weight: 700;
-    letter-spacing: 3px;
+    font-size: 32px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
     text-align: center;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
   }
 
   /* Modern menu items */
   .menu ul li {
-    padding: 0;
+    padding: 18px 25px;
     margin: 0;
     text-align: center;
     border: none;
-    font-size: 18px;
+    font-size: 20px;
     color: #ffffff;
     position: relative;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    background: transparent;
+    background: rgba(255, 255, 255, 0.05);
     font-weight: 600;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
     height: auto;
-    min-height: 50px;
-    display: flex;
+    min-height: 60px;
+    display: flex !important;
     align-items: center;
     justify-content: center;
-    border-radius: 12px;
-    margin-bottom: 8px;
+    border-radius: 15px;
+    margin-bottom: 12px;
     opacity: 0;
     animation: fadeInItem 0.4s ease forwards;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   @keyframes fadeInItem {
@@ -1090,14 +1250,25 @@ body {
   .menu ul li:nth-child(14) { animation-delay: 0.75s; }
   .menu ul li:nth-child(15) { animation-delay: 0.8s; }
 
+  .menu ul li:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(8px);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .menu ul li:active {
+    transform: scale(0.98) translateX(8px);
+  }
+
   .menu ul li:last-child {
     margin-bottom: 0;
   }
 
   .menu ul li.mobile-only {
     display: flex;
-    font-size: 16px;
-    color: rgba(255, 255, 255, 0.9);
+    font-size: 17px;
+    color: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.08);
     font-weight: 500;
     margin-top: 0;
   }

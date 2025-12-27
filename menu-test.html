@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Menu Test</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;    
+}
+
+.menu-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100001;
+  background: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.hamburger {
+  width: 28px;
+  height: 24px;
+  position: relative;
+}
+
+.hamburger span {
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background: #1e5631;
+  border-radius: 3px;
+  transition: 0.3s;
+}
+
+.hamburger span:nth-child(1) { top: 0px; }
+.hamburger span:nth-child(2) { top: 10px; }
+.hamburger span:nth-child(3) { top: 20px; }
+
+.menu-toggle.active .hamburger span:nth-child(1) {
+  top: 10px;
+  transform: rotate(45deg);
+  background: #fff;
+}
+
+.menu-toggle.active .hamburger span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active .hamburger span:nth-child(3) {
+  top: 10px;
+  transform: rotate(-45deg);
+  background: #fff;
+}
+
+.menu ul {
+  display: none !important;
+  list-style: none;
+}
+
+.menu ul.active {
+  display: flex !important;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #1e5631 0%, #2d7a3e 50%, #1e5631 100%);
+  z-index: 100000;
+  padding: 100px 30px;
+  margin: 0;
+  justify-content: flex-start;
+  overflow-y: auto;
+}
+
+.menu ul li {
+  padding: 18px 25px;
+  text-align: center;
+  font-size: 20px;
+  color: white;
+  background: rgba(255, 255, 255, 0.05);
+  margin-bottom: 12px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.menu ul li:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+</style>
+</head>
+<body>
+
+<h1 style="padding: 20px;">Menu Test Page</h1>
+<p style="padding: 0 20px;">Click the hamburger icon in the top-right corner to test the menu.</p>
+
+<button class="menu-toggle" aria-label="Toggle menu">
+    <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</button>
+
+<nav class="menu">
+    <ul>
+        <li>ABOUT US</li>
+        <li>ACADEMICS</li>
+        <li>FACILITIES</li>
+        <li>DEPARTMENTS</li>
+        <li>PLACEMENTS</li>
+        <li>EXAMINATION</li>
+        <li>STUDENT CORNER</li>
+        <li>CONTACT US</li>
+    </ul>
+</nav>
+
+<script>
+console.log("Test page loaded");
+
+const menuToggle = document.querySelector(".menu-toggle");
+const menuUl = document.querySelector(".menu ul");
+
+console.log("Toggle:", menuToggle);
+console.log("Menu UL:", menuUl);
+
+if (menuToggle && menuUl) {
+  menuToggle.addEventListener("click", () => {
+    console.log("Clicked!");
+    menuUl.classList.toggle("active");
+    menuToggle.classList.toggle("active");
+    console.log("Active:", menuUl.classList.contains("active"));
+  });
+
+  // Close on menu item click
+  document.querySelectorAll(".menu ul li").forEach(item => {
+    item.addEventListener("click", () => {
+      menuUl.classList.remove("active");
+      menuToggle.classList.remove("active");
+    });
+  });
+}
+</script>
+
+</body>
+</html>

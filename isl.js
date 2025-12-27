@@ -1,39 +1,98 @@
 /* HEADER ANIMATION & MENU TOGGLE */
 window.addEventListener("DOMContentLoaded", () => {
+  console.log("DOM Content Loaded - Initializing menu");
+  
   const menuToggle = document.querySelector(".menu-toggle");
   const menuUl = document.querySelector(".menu ul");
   const body = document.body;
+  const html = document.documentElement;
 
-  menuToggle.addEventListener("click", () => {
-    menuUl.classList.toggle("active");
-    menuToggle.classList.toggle("active");
+  // Check if elements exist
+  if (!menuToggle) {
+    console.error("Menu toggle button not found!");
+    return;
+  }
+  if (!menuUl) {
+    console.error("Menu ul not found!");
+    return;
+  }
+  
+  console.log("Menu elements found successfully");
 
-    // Prevent body scroll when menu is open
+  // Function to close menu
+  function closeMenu() {
+    console.log("Closing menu");
+    menuUl.classList.remove("active");
+    menuToggle.classList.remove("active");
+    body.style.overflow = "";
+    html.style.overflow = "";
+  }
+
+  // Function to open menu
+  function openMenu() {
+    console.log("Opening menu");
+    menuUl.classList.add("active");
+    menuToggle.classList.add("active");
+    body.style.overflow = "hidden";
+    html.style.overflow = "hidden";
+    
+    // Double-check it was added
+    setTimeout(() => {
+      console.log("Menu active class:", menuUl.classList.contains("active"));
+      console.log("Menu display style:", window.getComputedStyle(menuUl).display);
+    }, 100);
+  }
+
+  // Toggle menu on hamburger click
+  menuToggle.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log("Hamburger clicked! Current active state:", menuUl.classList.contains("active"));
+    
     if (menuUl.classList.contains("active")) {
-      body.style.overflow = "hidden";
+      closeMenu();
     } else {
-      body.style.overflow = "";
+      openMenu();
     }
   });
 
   // Close menu when clicking menu items
   const menuItems = document.querySelectorAll(".menu ul li");
+  console.log("Found menu items:", menuItems.length);
+  
   menuItems.forEach(item => {
-    item.addEventListener("click", () => {
-      menuUl.classList.remove("active");
-      menuToggle.classList.remove("active");
-      body.style.overflow = "";
+    item.addEventListener("click", (e) => {
+      console.log("Menu item clicked");
+      closeMenu();
     });
   });
 
-  // Close menu when clicking outside
-  document.addEventListener("click", (e) => {
-    if (!e.target.closest(".menu") && !e.target.closest(".menu-toggle")) {
-      menuUl.classList.remove("active");
-      menuToggle.classList.remove("active");
-      body.style.overflow = "";
+  // Close menu when clicking on the menu overlay (not on items)
+  menuUl.addEventListener("click", (e) => {
+    if (e.target === menuUl) {
+      console.log("Clicked on overlay");
+      closeMenu();
     }
   });
+
+  // Close menu on escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && menuUl.classList.contains("active")) {
+      console.log("Escape key pressed");
+      closeMenu();
+    }
+  });
+
+  // Prevent scroll when touching the menu overlay
+  if (menuUl) {
+    menuUl.addEventListener("touchmove", (e) => {
+      if (e.target === menuUl) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+  }
+  
+  console.log("Menu toggle initialized successfully");
 });
 
 /* SLIDER */
@@ -41,24 +100,47 @@ const slides = document.querySelectorAll(".slides img");
 const prev = document.querySelector(".prev");
 const next = document.querySelector(".next");
 let index = 0;
+let animationTypes = ['slide-in-right', 'fade-scale', 'zoom-in', 'slide-in-left'];
+let currentAnimationType = 0;
 
-function showSlide(i) {
-  slides.forEach(s => s.classList.remove("active"));
+function showSlide(i, direction = 'next') {
+  // Remove all classes from all slides
+  slides.forEach(s => {
+    s.classList.remove("active");
+    s.classList.remove("slide-in-right");
+    s.classList.remove("slide-in-left");
+    s.classList.remove("fade-scale");
+    s.classList.remove("zoom-in");
+  });
+  
+  // Select animation based on direction and cycle through different effects
+  let animationClass;
+  if (direction === 'next') {
+    animationClass = animationTypes[currentAnimationType % animationTypes.length];
+  } else {
+    animationClass = 'slide-in-left';
+  }
+  
+  // Add active class and animation
   slides[i].classList.add("active");
+  slides[i].classList.add(animationClass);
+  
+  // Cycle to next animation type
+  currentAnimationType++;
 }
 
 next.onclick = () => {
   index = (index + 1) % slides.length;
-  showSlide(index);
+  showSlide(index, 'next');
 };
 
 prev.onclick = () => {
   index = (index - 1 + slides.length) % slides.length;
-  showSlide(index);
+  showSlide(index, 'prev');
 };
 
-// Auto-slide (currently commented out)
-// setInterval(() => next.click(), 5000);
+// Auto-slide every 5 seconds
+setInterval(() => next.click(), 5000);
 
 /* CHAIRMAN SECTION SCROLL ANIMATION */
 function observeChairmanSection() {
