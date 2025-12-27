@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ISL Pharmacy College - Bandlaguda, India</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ===== TOP BAR ===== */
+.top-bar {
+  background: linear-gradient(135deg, #1e5631 0%, #2d7a3e 100%);
+  height: auto;
+  min-height: 48px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 10px 24px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.top-bar .left {
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+  margin-right: auto;
+  white-space: nowrap;
+}
+
+.top-bar .left span {
+  font-weight: normal;
+  margin-right: 8px;
+  opacity: 0.9;
+}
+
+.top-bar nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.top-bar nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  transition: opacity 0.3s;
+  padding: 5px;
+}
+
+.top-bar nav a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* ===== HEADER ===== */
+.main-header {
+  background: #ffffff;
+  border-bottom: 4px solid #2d7a3e;
+  padding: 15px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-grow: 1;
+}
+
+.logo-section img {
+  height: 70px;
+  width: auto;
+  object-fit: contain;
+}
+
+.college-info h1 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1e5631;
+  margin-bottom: 2px;
+}
+
+.college-info p {
+  font-size: 12px;
+  color: #666;
+  font-weight: 500;
+}
+
+.menu {
+  flex-grow: 1;
+}
+
+.menu ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding-top: 15px;
+}
+
+.menu ul li {
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.menu ul li:hover {
+  color: #1e5631;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: #1e5631;
+  cursor: pointer;
+}
+
+
+/* ===== SLIDER ===== */
+.slider {
+  position: relative;
+  width: 100%;
+  height: 350px; /* Adjusted for mobile */
+  overflow: auto;
+  background: linear-gradient(135deg, #1e5631 0%, #2d7a3e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slides {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slides img {
+  position: absolute;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  background: #f1f3f5;
+}
+
+.slides img.active {
+  opacity: 1;
+}
+
+/* Buttons */
+.slider button{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(0,0,0,0.4);
+  color:#fff;
+  border:none;
+  padding:10px;
+  font-size:18px;
+  cursor:pointer;
+  z-index: 10;
+}
+.slider .prev{left:10px;}
+.slider .next{right:10px;}
+
+
+/* ===== PAGE LOAD ANIMATIONS ===== */
+@keyframes slideDownBounce {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  70% {
+    transform: translateY(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(60px) rotateY(15deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) rotateY(0deg);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-60px) rotateY(-15deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) rotateY(0deg);
+  }
+}
+
+@keyframes popInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) rotate(-10deg);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideUpWithFade {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Top Bar Animation - Smooth slide down */
+.top-bar {
+  animation: slideDownBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+/* Header Animations */
+.main-header {
+  animation: slideDownBounce 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.1s forwards;
+  opacity: 0;
+}
+
+.logo-section {
+  animation: slideInLeft 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.2s forwards;
+  opacity: 0;
+}
+
+.logo-section img {
+  animation: popInScale 1.1s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.35s forwards;
+  opacity: 0;
+}
+
+.college-info h1 {
+  animation: slideUpWithFade 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.4s forwards;
+  opacity: 0;
+}
+
+.college-info p {
+  animation: slideUpWithFade 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.5s forwards;
+  opacity: 0;
+}
+
+.menu {
+  animation: slideInRight 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.25s forwards;
+  opacity: 0;
+}
+
+.menu ul li {
+  animation: fadeInUp 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  opacity: 0;
+}
+
+.menu ul li:nth-child(1) { animation-delay: 0.4s; }
+.menu ul li:nth-child(2) { animation-delay: 0.5s; }
+.menu ul li:nth-child(3) { animation-delay: 0.6s; }
+.menu ul li:nth-child(4) { animation-delay: 0.7s; }
+.menu ul li:nth-child(5) { animation-delay: 0.8s; }
+
+/* Slider Animation - Elegant scale up */
+.slider {
+  animation: scaleUp 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.85s forwards;
+  opacity: 0;
+}
+
+
+/* ===== RESPONSIVE STYLES ===== */
+@media (min-width: 768px) {
+    .college-info h1 {
+        font-size: 28px;
+    }
+
+    .menu ul {
+        justify-content: flex-end;
+        gap: 28px;
+        padding-top: 0;
+    }
+
+    .slider {
+        height: 550px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .slider {
+        height: 650px;
+    }
+}
+
+/* ===== CHAIRMAN SECTION ===== */
+.chairman-section {
+  background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+  padding: 60px 24px;
+  margin: 40px 0;
+}
+
+.chairman-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.chairman-image {
+  text-align: center;
+  opacity: 0;
+}
+
+.chairman-image img {
+  max-width: 50%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(30, 86, 49, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.chairman-image img:hover {
+  transform: scale(1.02);
+}
+
+.chairman-content {
+  opacity: 0;
+}
+
+.chairman-content h2 {
+  font-size: 32px;
+  color: #1e5631;
+  margin-bottom: 15px;
+  font-weight: 700;
+  opacity: 0;
+}
+
+.chairman-content h3 {
+  font-size: 16px;
+  color: #2d7a3e;
+  margin-bottom: 20px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  opacity: 0;
+}
+
+.chairman-content p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 15px;
+  text-align: justify;
+  opacity: 0;
+}
+
+.chairman-highlights {
+  background: #e8f5e9;
+  padding: 20px;
+  border-left: 5px solid #1e5631;
+  border-radius: 8px;
+  margin-top: 20px;
+  opacity: 0;
+}
+
+.chairman-highlights p {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.chairman-highlights p:last-child {
+  margin-bottom: 0;
+}
+
+.chairman-highlights strong {
+  color: #1e5631;
+}
+
+/* ===== ABOUT ISL PHARMACY SECTION ===== */
+.about-section {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f7f4 100%);
+  padding: 120px 24px;
+  margin: 80px 0;
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-section h2 {
+  font-size: 56px;
+  color: #1e5631;
+  margin-bottom: 15px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0;
+}
+
+.about-section::before {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 6px;
+  background: linear-gradient(90deg, #1e5631 0%, #2d7a3e 100%);
+  margin: 0 auto 40px auto;
+  border-radius: 3px;
+  opacity: 0;
+}
+
+.about-image {
+  margin: 50px 0;
+  opacity: 0;
+}
+
+.about-image img {
+  max-width: 85%;
+  height: auto;
+  max-height: 650px;
+  object-fit: contain;
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(30, 86, 49, 0.25);
+  transition: transform 0.3s ease;
+}
+
+.about-image img:hover {
+  transform: scale(1.04);
+}
+
+.about-content {
+  text-align: justify;
+  margin-top: 50px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0;
+}
+
+.about-content p {
+  font-size: 20px;
+  line-height: 2.1;
+  color: #333;
+  margin-bottom: 30px;
+  font-weight: 500;
+  text-align: justify;
+  text-justify: inter-word;
+  letter-spacing: 0.6px;
+}
+
+.text-line {
+  display: inline;
+  opacity: 0;
+}
+}
+
+.about-content p:first-of-type {
+  margin-top: 0;
+}
+
+/* About Section Animations */
+.about-section h2.animate {
+  animation: slideDownBounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.1s forwards;
+  opacity: 0;
+}
+
+.about-section::before {
+  animation: expandWidth 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  opacity: 0;
+}
+
+.about-section::before.animate {
+  opacity: 0;
+  animation: expandWidth 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards !important;
+}
+
+.about-image.animate {
+  animation: rotateInScale 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.2s forwards;
+  opacity: 0;
+}
+
+.about-content.animate {
+  animation: slideUpBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s forwards;
+  opacity: 0;
+}
+
+.about-content p.animate {
+  animation: textReveal 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.4s forwards;
+  opacity: 0;
+}
+
+.about-content p.animate .text-line {
+  animation: lineRevealSlowly 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  opacity: 0;
+}
+
+.about-content p.animate .text-line:nth-child(1) { animation-delay: 0.65s; }
+.about-content p.animate .text-line:nth-child(2) { animation-delay: 1.15s; }
+.about-content p.animate .text-line:nth-child(3) { animation-delay: 1.65s; }
+.about-content p.animate .text-line:nth-child(4) { animation-delay: 2.15s; }
+.about-content p.animate .text-line:nth-child(5) { animation-delay: 2.65s; }
+.about-content p.animate .text-line:nth-child(6) { animation-delay: 3.15s; }
+.about-content p.animate .text-line:nth-child(7) { animation-delay: 3.65s; }
+.about-content p.animate .text-line:nth-child(8) { animation-delay: 4.15s; }
+.about-content p.animate .text-line:nth-child(9) { animation-delay: 4.65s; }
+
+@media (max-width: 768px) {
+  .about-section {
+    padding: 50px 20px;
+    margin: 40px 0;
+  }
+
+  .about-section h2 {
+    font-size: 28px;
+  }
+
+  .about-content p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .about-image img {
+    max-height: 300px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-section {
+    padding: 140px 40px;
+    margin: 100px 0;
+  }
+
+  .about-container {
+    max-width: 1300px;
+  }
+
+  .about-section h2 {
+    font-size: 64px;
+    margin-bottom: 20px;
+  }
+
+  .about-section::before {
+    width: 120px;
+    height: 7px;
+    margin-bottom: 50px;
+  }
+
+  .about-image {
+    margin: 60px 0;
+  }
+
+  .about-image img {
+    max-height: 750px;
+  }
+
+  .about-content {
+    margin-top: 60px;
+    max-width: 1100px;
+  }
+
+  .about-content p {
+    font-size: 22px;
+    line-height: 2.2;
+    margin-bottom: 35px;
+  }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Chairman Specific Animations */
+@keyframes rotateInScale {
+  from {
+    opacity: 0;
+    transform: rotateY(-30deg) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: rotateY(0deg) scale(1);
+  }
+}
+
+@keyframes slideUpBounce {
+  0% {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  65% {
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    opacity: 0;
+    background-position: -1000px 0;
+  }
+  100% {
+    opacity: 1;
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes expandWidth {
+  from {
+    opacity: 0;
+    width: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    width: 100%;
+    transform: translateY(0);
+  }
+}
+
+@keyframes textReveal {
+  0% {
+    opacity: 0;
+    background-position: 200% center;
+  }
+  100% {
+    opacity: 1;
+    background-position: 0% center;
+  }
+}
+
+@keyframes lineRevealSlowly {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes lineReveal {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes slideDownBounce {
+  0% {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+  65% {
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chairman-image.animate {
+  animation: rotateInScale 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.chairman-content.animate {
+  animation: slideUpBounce 1.1s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.1s forwards;
+  opacity: 0;
+}
+
+.chairman-content h2.animate {
+  animation: slideUpBounce 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.25s forwards;
+  opacity: 0;
+}
+
+.chairman-content h3.animate {
+  animation: expandWidth 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.35s forwards;
+  opacity: 0;
+}
+
+.chairman-content p.animate {
+  animation: slideUpBounce 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.45s forwards;
+  opacity: 0;
+}
+
+.chairman-highlights.animate {
+  animation: slideUpBounce 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.55s forwards;
+  opacity: 0;
+}
+
+@media (max-width: 768px) {
+  .chairman-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .chairman-section {
+    padding: 40px 20px;
+  }
+
+  .chairman-content h2 {
+    font-size: 24px;
+  }
+
+  .chairman-content p {
+    font-size: 14px;
+  }
+}
+
+
+@media (max-width: 992px) {
+  .header-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .logo-section {
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .menu {
+      width: 100%;
+      margin-left: 0;
+  }
+  
+  .menu ul {
+    justify-content: center;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .top-bar nav {
+    display: none; /* Hide top nav on small screens */
+  }
+
+  .menu-toggle {
+      display: block;
+      position: absolute;
+      top: 28px;
+      right: 20px;
+  }
+
+  .menu {
+      width: 100%;
+      margin-left: 0;
+  }
+
+  .menu ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: #f9f9f9;
+    position: absolute;
+    top: 90px;
+    left: 0;
+    z-index: 100;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  .menu ul.active {
+    display: flex;
+  }
+
+  .menu ul li {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .menu ul li::after {
+      content: "";
+  }
+  
+  .header-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .college-info h1 {
+    font-size: 20px;
+  }
+  
+  .college-info p {
+      font-size: 11px;
+  }
+
+  .logo-circle {
+      width: 50px;
+      height: 50px;
+      font-size: 20px;
+  }
+}
+
+/* ===== QUOTE SECTION FOR PHARMACY & BEAUTY ===== */
+.quote-section {
+  background: linear-gradient(135deg, #f0f7f4 0%, #ffffff 100%);
+  padding: 120px 24px;
+  margin: 80px 0;
+}
+
+.quote-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.quote-section h2 {
+  font-size: 48px;
+  color: #1e5631;
+  margin-bottom: 15px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.quote-subtitle {
+  font-size: 20px;
+  color: #2d7a3e;
+  margin-bottom: 60px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.quote-section::before {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 6px;
+  background: linear-gradient(90deg, #1e5631 0%, #2d7a3e 100%);
+  margin: 0 auto 40px auto;
+  border-radius: 3px;
+}
+
+.quotes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.quote-card {
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(30, 86, 49, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.quote-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #1e5631 0%, #2d7a3e 50%, #1e5631 100%);
+}
+
+.quote-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(30, 86, 49, 0.2);
+}
+
+.quote-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.quote-text {
+  font-size: 18px;
+  color: #333;
+  font-weight: 600;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-style: italic;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quote-author {
+  font-size: 14px;
+  color: #2d7a3e;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 2px solid #e0e0e0;
+}
+
+.quote-card.animate {
+  animation: fadeInUpCard 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.quote-card:nth-child(1) { animation-delay: 0.1s; }
+.quote-card:nth-child(2) { animation-delay: 0.2s; }
+.quote-card:nth-child(3) { animation-delay: 0.3s; }
+.quote-card:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fadeInUpCard {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .quote-section {
+    padding: 60px 20px;
+    margin: 40px 0;
+  }
+
+  .quote-section h2 {
+    font-size: 32px;
+  }
+
+  .quote-subtitle {
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+
+  .quotes-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .quote-card {
+    padding: 30px 20px;
+  }
+
+  .quote-text {
+    font-size: 16px;
+    min-height: 70px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .quote-section {
+    padding: 140px 40px;
+    margin: 100px 0;
+  }
+
+  .quote-section h2 {
+    font-size: 56px;
+    margin-bottom: 20px;
+  }
+
+  .quote-subtitle {
+    font-size: 22px;
+    margin-bottom: 70px;
+  }
+
+  .quotes-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 35px;
+  }
+
+  .quote-card {
+    padding: 45px 35px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="left"><span>Code:</span>ISLPC</div>
+  <nav>
+    <a href="#">Examination</a>
+    <a href="#">Student Corner</a>
+    <a href="#">Online Grievance</a>
+    <a href="#">R&amp;D</a>
+    <a href="#">IQAC</a>
+    <a href="#">Alumni</a>
+    <a href="#">NIRF</a>
+    <a href="#">Blog</a>
+    <a href="#">Careers</a>
+    <a href="#">Contact Us</a>
+  </nav>
+</div>
+
+<!-- HEADER -->
+<header class="main-header">
+    <div class="header-container">
+        <div class="logo-section">
+            <img src="logo.jpg" alt="ISL Pharmacy College Logo">
+            <div class="college-info">
+                <h1>ISL PHARMACY COLLEGE</h1>
+                <p>Approved by PCI & AICTE | Affiliated to Osmania University | Approved By Telangana Govt</p>
+            </div>
+        </div>
+        <button class="menu-toggle">&#9776;</button>
+        <nav class="menu">
+            <ul>
+                <li>ABOUT US</li>
+                <li>ACADEMICS</li>
+                <li>FACILITIES</li>
+                <li>DEPARTMENTS</li>
+                <li>PLACEMENTS</li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+<!-- SLIDER -->
+<div class="slider">
+  <div class="slides">
+    <img src="welcome.jpeg" class="active">
+    <img src="semi.jpeg">
+        <img src="kri.jpeg">
+    <img src="one.jpeg">
+  </div>
+
+  <button class="prev">&#10094;</button>
+  <button class="next">&#10095;</button>
+</div>
+
+<!-- CHAIRMAN SECTION -->
+<section class="chairman-section">
+  <div class="chairman-container">
+    <div class="chairman-image">
+      <img src="chairman.jpeg" alt="Mr. Salman Ahmed - Chairman">
+    </div>
+    <div class="chairman-content">
+      <h2>About the Chairman</h2>
+      <h3>Mr. Salman Ahmed</h3>
+      <p>
+        Mr. Salman Ahmed is a dynamic leader and visionary educationist who carries forward the strong values and vision of his father, Mr. Khaja Hassan. As a qualified HR professional and certified corporate trainer, he brings extensive expertise to lead the institution.
+      </p>
+      <div class="chairman-highlights">
+        <p><strong>Leadership Philosophy:</strong> Believes in quality education, strong ethics, and teamwork. Under his guidance, institutions grow with discipline, innovation, and purpose.</p>
+        <p><strong>Professional Credentials:</strong> Doctoral Research Scholar in Human Resource Management with specialization in Behavioural Sciences and several research publications.</p>
+        <p><strong>Vision:</strong> Committed to shaping skilled, responsible, and future-ready professionals through modern education and strong ethical values.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT ISL PHARMACY SECTION -->
+<section class="about-section">
+  <div class="about-container">
+    <h2>About ISL Pharmacy College</h2>
+    
+    <div class="about-image">
+      <img src="vibe.jpeg" alt="ISL Pharmacy College">
+    </div>
+    
+    <div class="about-content">
+      <p>
+        <span class="text-line">ISL Pharmacy College is committed to providing quality education in pharmaceutical sciences with a strong focus on knowledge, ethics, and practical skills.</span> <span class="text-line">The college aims to develop competent, responsible, and industry-ready pharmacy professionals.</span> <span class="text-line">With experienced faculty, modern facilities, and a student-centered approach, ISL Pharmacy College nurtures learning, innovation, and professional growth.</span> <span class="text-line">Our curriculum is designed to blend theoretical knowledge with practical experience, ensuring students gain hands-on expertise in pharmaceutical research, drug formulation, and clinical practice.</span> <span class="text-line">We emphasize the importance of ethics and professional responsibility in healthcare.</span> <span class="text-line">The college is equipped with state-of-the-art laboratories, advanced research facilities, and a well-stocked pharmacy library to support academic excellence.</span> <span class="text-line">Our faculty members are highly qualified professionals with extensive industry and academic experience.</span> <span class="text-line">ISL Pharmacy College is recognized by the Pharmacy Council of India (PCI) and affiliated with Osmania University.</span> <span class="text-line">We are dedicated to preparing graduates who excel in pharmaceutical practice, research, and contribute meaningfully to society's healthcare and wellness needs.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE SECTION FOR PHARMACY & BEAUTY -->
+<section class="quote-section">
+  <div class="quote-container">
+    <h2>Words of Wellness</h2>
+    <p class="quote-subtitle">Inspiring Principles in Pharmacy & Beauty</p>
+    
+    <div class="quotes-grid">
+      <div class="quote-card">
+        <div class="quote-icon">💊</div>
+        <p class="quote-text">"Health is a state of complete physical, mental and social well-being, not merely the absence of disease or infirmity."</p>
+        <p class="quote-author">World Health Organization</p>
+      </div>
+      
+      <div class="quote-card">
+        <div class="quote-icon">✨</div>
+        <p class="quote-text">"Beauty is not just about appearance. It's about feeling healthy, confident, and empowered from within."</p>
+        <p class="quote-author">Wellness Philosophy</p>
+      </div>
+      
+      <div class="quote-card">
+        <div class="quote-icon">🌿</div>
+        <p class="quote-text">"The greatest wealth is health. A pharmacist is a guardian of wellness and a bridge between science and humanity."</p>
+        <p class="quote-author">Pharmacy Wisdom</p>
+      </div>
+      
+      <div class="quote-card">
+        <div class="quote-icon">❤️</div>
+        <p class="quote-text">"Self-care is not selfish. It's an act of self-respect and responsibility to yourself and your loved ones.so love yourself        "</p>
+        <p class="quote-author">Healthcare Excellence</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+/* HEADER ANIMATION & MENU TOGGLE */
+window.addEventListener("DOMContentLoaded",()=>{
+  const menuToggle = document.querySelector(".menu-toggle");
+  const menuUl = document.querySelector(".menu ul");
+
+  menuToggle.addEventListener("click", () => {
+      menuUl.classList.toggle("active");
+  });
+});
+
+/* SLIDER */
+const slides=document.querySelectorAll(".slides img");
+const prev=document.querySelector(".prev");
+const next=document.querySelector(".next");
+let index=0;
+
+function showSlide(i){
+  slides.forEach(s=>s.classList.remove("active"));
+  slides[i].classList.add("active");
+}
+next.onclick=()=>{
+  index=(index+1)%slides.length;
+  showSlide(index);
+};
+prev.onclick=()=>{
+  index=(index-1+slides.length)%slides.length;
+  showSlide(index);
+};
+// setInterval(()=>next.click(),5000);
+
+/* CHAIRMAN SECTION SCROLL ANIMATION */
+function observeChairmanSection() {
+  const chairman = document.querySelector('.chairman-section');
+  const chairmanImage = document.querySelector('.chairman-image');
+  const chairmanContent = document.querySelector('.chairman-content');
+  const chairmanH2 = document.querySelector('.chairman-content h2');
+  const chairmanH3 = document.querySelector('.chairman-content h3');
+  const chairmanP = document.querySelectorAll('.chairman-content p');
+  const chairmanHighlights = document.querySelector('.chairman-highlights');
+
+  const observerOptions = {
+    threshold: 0.3,
+    rootMargin: '0px 0px -100px 0px'
+  };
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+        chairmanImage.classList.add('animate');
+        chairmanContent.classList.add('animate');
+        chairmanH2.classList.add('animate');
+        chairmanH3.classList.add('animate');
+        chairmanP.forEach(p => p.classList.add('animate'));
+        chairmanHighlights.classList.add('animate');
+        entry.target.classList.add('animated');
+      }
+    });
+  }, observerOptions);
+
+  observer.observe(chairman);
+}
+
+window.addEventListener('DOMContentLoaded', observeChairmanSection);
+
+/* ABOUT ISL PHARMACY SECTION SCROLL ANIMATION */
+function observeAboutSection() {
+  const aboutSection = document.querySelector('.about-section');
+  const aboutH2 = document.querySelector('.about-section h2');
+  const aboutBeforeLine = document.querySelector('.about-section::before');
+  const aboutImage = document.querySelector('.about-image');
+  const aboutContent = document.querySelector('.about-content');
+  const textLines = document.querySelectorAll('.about-content p .text-line');
+
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '200px 0px 0px 0px'
+  };
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+        aboutH2.classList.add('animate');
+        aboutImage.classList.add('animate');
+        aboutContent.classList.add('animate');
+        const aboutP = document.querySelector('.about-content p');
+        if (aboutP) {
+          aboutP.classList.add('animate');
+        }
+        textLines.forEach(line => {
+          line.classList.add('animate');
+        });
+        entry.target.classList.add('animated');
+      }
+    });
+  }, observerOptions);
+
+  observer.observe(aboutSection);
+}
+
+window.addEventListener('DOMContentLoaded', observeAboutSection);
+
+/* QUOTE SECTION SCROLL ANIMATION */
+function observeQuoteSection() {
+  const quoteSection = document.querySelector('.quote-section');
+  const quoteCards = document.querySelectorAll('.quote-card');
+
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '150px 0px 0px 0px'
+  };
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+        quoteCards.forEach((card, index) => {
+          setTimeout(() => {
+            card.classList.add('animate');
+          }, index * 100);
+        });
+        entry.target.classList.add('animated');
+      }
+    });
+  }, observerOptions);
+
+  observer.observe(quoteSection);
+}
+
+window.addEventListener('DOMContentLoaded', observeQuoteSection);
+</script>
+
+</body>
+</html>
