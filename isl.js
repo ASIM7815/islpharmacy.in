@@ -102,6 +102,7 @@ const next = document.querySelector(".next");
 let index = 0;
 let animationTypes = ['slide-in-right', 'fade-scale', 'zoom-in', 'slide-in-left'];
 let currentAnimationType = 0;
+let autoSlideInterval;
 
 function showSlide(i, direction = 'next') {
   // Remove all classes from all slides
@@ -129,18 +130,38 @@ function showSlide(i, direction = 'next') {
   currentAnimationType++;
 }
 
+function startAutoSlide() {
+  clearInterval(autoSlideInterval);
+  autoSlideInterval = setInterval(() => {
+    index = (index + 1) % slides.length;
+    showSlide(index, 'next');
+  }, 7000);
+}
+
 next.onclick = () => {
   index = (index + 1) % slides.length;
   showSlide(index, 'next');
+  
+  // Stop auto-slide and restart after 2 seconds
+  clearInterval(autoSlideInterval);
+  setTimeout(() => {
+    startAutoSlide();
+  }, 2000);
 };
 
 prev.onclick = () => {
   index = (index - 1 + slides.length) % slides.length;
   showSlide(index, 'prev');
+  
+  // Stop auto-slide and restart after 2 seconds
+  clearInterval(autoSlideInterval);
+  setTimeout(() => {
+    startAutoSlide();
+  }, 2000);
 };
 
-// Auto-slide every 5 seconds
-setInterval(() => next.click(), 5000);
+// Start auto-slide
+startAutoSlide();
 
 /* CHAIRMAN SECTION SCROLL ANIMATION */
 function observeChairmanSection() {
