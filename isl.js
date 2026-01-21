@@ -1,5 +1,5 @@
 /* HEADER ANIMATION & MENU TOGGLE */
-window.addEventListener("DOMContentLoaded", () => {
+function initMenuToggle() {
   console.log("DOM Content Loaded - Initializing menu");
   
   const menuToggle = document.querySelector(".menu-toggle");
@@ -93,7 +93,14 @@ window.addEventListener("DOMContentLoaded", () => {
   }
   
   console.log("Menu toggle initialized successfully");
-});
+}
+
+// Run now if DOM is already ready (prevents issues if script loading changes)
+if (document.readyState === "loading") {
+  window.addEventListener("DOMContentLoaded", initMenuToggle);
+} else {
+  initMenuToggle();
+}
 
 /* SLIDER */
 const slides = document.querySelectorAll(".slides img");
@@ -138,30 +145,34 @@ function startAutoSlide() {
   }, 7000);
 }
 
-next.onclick = () => {
-  index = (index + 1) % slides.length;
-  showSlide(index, 'next');
-  
-  // Stop auto-slide and restart after 2 seconds
-  clearInterval(autoSlideInterval);
-  setTimeout(() => {
-    startAutoSlide();
-  }, 2000);
-};
+if (slides.length > 0 && prev && next) {
+  next.onclick = () => {
+    index = (index + 1) % slides.length;
+    showSlide(index, 'next');
+    
+    // Stop auto-slide and restart after 2 seconds
+    clearInterval(autoSlideInterval);
+    setTimeout(() => {
+      startAutoSlide();
+    }, 2000);
+  };
 
-prev.onclick = () => {
-  index = (index - 1 + slides.length) % slides.length;
-  showSlide(index, 'prev');
-  
-  // Stop auto-slide and restart after 2 seconds
-  clearInterval(autoSlideInterval);
-  setTimeout(() => {
-    startAutoSlide();
-  }, 2000);
-};
+  prev.onclick = () => {
+    index = (index - 1 + slides.length) % slides.length;
+    showSlide(index, 'prev');
+    
+    // Stop auto-slide and restart after 2 seconds
+    clearInterval(autoSlideInterval);
+    setTimeout(() => {
+      startAutoSlide();
+    }, 2000);
+  };
 
-// Start auto-slide
-startAutoSlide();
+  // Start auto-slide
+  startAutoSlide();
+} else {
+  console.warn("Slider elements not found; slider disabled.");
+}
 
 /* CHAIRMAN SECTION SCROLL ANIMATION */
 function observeChairmanSection() {
