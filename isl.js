@@ -184,6 +184,8 @@ function observeChairmanSection() {
   const chairmanP = document.querySelectorAll('.chairman-content p');
   const chairmanHighlights = document.querySelector('.chairman-highlights');
 
+  if (!chairman) return;
+
   const observerOptions = {
     threshold: 0.3,
     rootMargin: '0px 0px -100px 0px'
@@ -192,12 +194,12 @@ function observeChairmanSection() {
   const observer = new IntersectionObserver(function (entries) {
     entries.forEach(entry => {
       if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
-        chairmanImage.classList.add('animate');
-        chairmanContent.classList.add('animate');
-        chairmanH2.classList.add('animate');
-        chairmanH3.classList.add('animate');
+        chairmanImage?.classList.add('animate');
+        chairmanContent?.classList.add('animate');
+        chairmanH2?.classList.add('animate');
+        chairmanH3?.classList.add('animate');
         chairmanP.forEach(p => p.classList.add('animate'));
-        chairmanHighlights.classList.add('animate');
+        chairmanHighlights?.classList.add('animate');
         entry.target.classList.add('animated');
       }
     });
@@ -216,6 +218,8 @@ function observeAboutSection() {
   const aboutContent = document.querySelector('.about-content');
   const textLines = document.querySelectorAll('.about-content p .text-line');
 
+  if (!aboutSection) return;
+
   const observerOptions = {
     threshold: 0.1,
     rootMargin: '200px 0px 0px 0px'
@@ -224,9 +228,9 @@ function observeAboutSection() {
   const observer = new IntersectionObserver(function (entries) {
     entries.forEach(entry => {
       if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
-        aboutH2.classList.add('animate');
-        aboutImage.classList.add('animate');
-        aboutContent.classList.add('animate');
+        aboutH2?.classList.add('animate');
+        aboutImage?.classList.add('animate');
+        aboutContent?.classList.add('animate');
         const aboutP = document.querySelector('.about-content p');
         if (aboutP) {
           aboutP.classList.add('animate');
@@ -248,6 +252,8 @@ window.addEventListener('DOMContentLoaded', observeAboutSection);
 function observeQuoteSection() {
   const quoteSection = document.querySelector('.quote-section');
   const quoteCards = document.querySelectorAll('.quote-card');
+
+  if (!quoteSection) return;
 
   const observerOptions = {
     threshold: 0.1,

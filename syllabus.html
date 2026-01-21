@@ -3,30 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=1024">
-<title>ALMANAC - ISL Pharmacy College</title>
+<title>Syllabus - ISL Pharmacy College</title>
 <link rel="stylesheet" href="style.css">
 <style>
-  .almanac-container {
+  .syllabus-container {
     max-width: 1200px;
     margin: 40px auto;
     padding: 20px;
   }
 
-  .almanac-title {
+  .syllabus-title {
     text-align: center;
     color: #1e5631;
     font-size: 2.5em;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     font-weight: bold;
+  }
+
+  .syllabus-subtitle {
+    text-align: center;
+    color: #444;
+    font-size: 1.1em;
+    margin-bottom: 30px;
   }
 
   .pdf-viewer {
     width: 100%;
-    height: 800px;
+    height: 820px;
     border: 2px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     margin-bottom: 20px;
+    background: #fff;
   }
 
   .download-box {
@@ -39,28 +47,37 @@
 
   .download-box h2 {
     color: white;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     font-size: 1.8em;
   }
 
   .download-box p {
     color: #f0f0f0;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     font-size: 1.1em;
+  }
+
+  .download-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
   .download-btn {
     background-color: white;
     color: #1e5631;
-    padding: 15px 40px;
+    padding: 14px 28px;
     border: none;
-    border-radius: 5px;
-    font-size: 1.2em;
+    border-radius: 6px;
+    font-size: 1.05em;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
   }
 
   .download-btn:hover {
@@ -69,26 +86,12 @@
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   }
 
-  .download-btn i {
-    margin-right: 8px;
-  }
-
   @media (max-width: 768px) {
     .pdf-viewer {
-      height: 500px;
+      height: 520px;
     }
-
-    .almanac-title {
+    .syllabus-title {
       font-size: 2em;
-    }
-
-    .download-box {
-      padding: 20px;
-    }
-
-    .download-btn {
-      padding: 12px 30px;
-      font-size: 1em;
     }
   }
 </style>
@@ -108,7 +111,7 @@
     <a href="index.html"></a>
     <a href="index.html">NIRF</a>
     <a href="index.html">Blog</a>
-    <a href="almanac.html" class="active">ALMANAC</a>
+    <a href="almanac.html">ALMANAC</a>
     <a href="index.html">Contact Us</a>
   </nav>
 </div>
@@ -134,15 +137,16 @@
         </button>
         <nav class="menu">
             <ul>
-            <li><a href="aboutus.html">ABOUT US</a></li>
+                <li><a href="aboutus.html">ABOUT US</a></li>
                 <li><a href="index.html">ACADEMICS</a></li>
                 <li><a href="index.html">FACILITIES</a></li>
                 <li><a href="index.html">DEPARTMENTS</a></li>
                 <li><a href="index.html">PLACEMENTS</a></li>
+                <li><a href="syllabus.html">SYLLABUS</a></li>
                 <li class="mobile-only"><a href="index.html">EXAMINATION</a></li>
                 <li class="mobile-only"><a href="index.html">STUDENT CORNER</a></li>
                 <li class="mobile-only"><a href="index.html">ONLINE GRIEVANCE</a></li>
-                <li class="mobile-only"><a href="index.html">R&D</a></li>
+                <li class="mobile-only"><a href="index.html">R&amp;D</a></li>
                 <li class="mobile-only"><a href="index.html">IQAC</a></li>
                 <li class="mobile-only"><a href="almanac.html">ALMANAC</a></li>
                 <li class="mobile-only"><a href="index.html">NIRF</a></li>
@@ -154,22 +158,24 @@
     </div>
 </header>
 
-<!-- ALMANAC CONTENT -->
-<div class="almanac-container">
-  <h1 class="almanac-title">College Almanac</h1>
-  
+<!-- SYLLABUS CONTENT -->
+<div class="syllabus-container">
+  <h1 class="syllabus-title">Syllabus</h1>
+  <p class="syllabus-subtitle">View and download the official Syllabus PDF.</p>
+
   <!-- PDF Viewer -->
-  <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1kiuGC8ZvqH99GSfS1rhcFr7-h_da5VRS/preview" type="application/pdf">
-    <p>Your browser does not support PDF preview. Please <a href="https://drive.google.com/file/d/1kiuGC8ZvqH99GSfS1rhcFr7-h_da5VRS/view" target="_blank">view the PDF</a> on Google Drive.</p>
+  <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1W32FD9Be3eJXW_v68x8dNuKzG1QT35xU/preview" type="application/pdf">
+    <p>Your browser does not support PDF preview. Please <a href="https://drive.google.com/file/d/1W32FD9Be3eJXW_v68x8dNuKzG1QT35xU/view?usp=drivesdk" target="_blank">view the PDF</a> on Google Drive.</p>
   </iframe>
 
   <!-- Download Box -->
   <div class="download-box">
-    <h2>Download Almanac</h2>
-    <p>Download the complete ISL Pharmacy College Almanac for offline viewing</p>
-    <a href="https://drive.google.com/uc?export=download&id=1kiuGC8ZvqH99GSfS1rhcFr7-h_da5VRS" target="_blank" class="download-btn">
-      <span>⬇</span> Download PDF
-    </a>
+    <h2>Syllabus PDF</h2>
+    <p>Open in Google Drive or download for offline viewing.</p>
+    <div class="download-actions">
+      <a class="download-btn" href="https://drive.google.com/file/d/1W32FD9Be3eJXW_v68x8dNuKzG1QT35xU/view?usp=drivesdk" target="_blank" rel="noopener">👁 View</a>
+      <a class="download-btn" href="https://drive.google.com/uc?export=download&id=1W32FD9Be3eJXW_v68x8dNuKzG1QT35xU" target="_blank" rel="noopener">⬇ Download</a>
+    </div>
   </div>
 </div>
 
