@@ -277,3 +277,33 @@ function observeQuoteSection() {
 }
 
 window.addEventListener('DOMContentLoaded', observeQuoteSection);
+
+/* GALLERY SECTION SCROLL ANIMATION */
+function observeGallerySection() {
+  const gallerySection = document.querySelector('.gallery-section');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+
+  if (!gallerySection || galleryItems.length === 0) return;
+
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '150px 0px 0px 0px'
+  };
+
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+        galleryItems.forEach((item, index) => {
+          setTimeout(() => {
+            item.classList.add('animate');
+          }, index * 90);
+        });
+        entry.target.classList.add('animated');
+      }
+    });
+  }, observerOptions);
+
+  observer.observe(gallerySection);
+}
+
+window.addEventListener('DOMContentLoaded', observeGallerySection);
