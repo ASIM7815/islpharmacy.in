@@ -1901,76 +1901,94 @@ body {
 
 /* ===== PRINCIPAL MESSAGE ===== */
 .principal-section {
-  background: linear-gradient(135deg, #f8fff9 0%, #fffbf0 100%);
-  padding: 80px 20px;
+  background: linear-gradient(135deg, #fffbf0 0%, #f8fff9 100%);
+  padding: 100px 20px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
 }
 
 .principal-container {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
 .principal-title {
   font-family: 'Cinzel', serif;
-  font-size: 2.6em;
-  text-align: center;
+  font-size: 3em;
   color: #1e5631;
-  letter-spacing: 2px;
-  margin-bottom: 35px;
+  margin-bottom: 50px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  border-bottom: 3px solid #d4af37;
+  display: inline-block;
+  padding-bottom: 15px;
 }
 
 .principal-card {
   background: #ffffff;
-  border-radius: 14px;
-  padding: 42px;
-  box-shadow: 0 18px 45px rgba(0,0,0,0.08);
-  border-left: 6px solid #2d7a3e;
-  display: flex;
-  gap: 32px;
-  align-items: flex-start;
+  padding: 60px 40px;
+  border-radius: 8px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+  position: relative;
+  border-top: 6px solid #1e5631;
 }
 
 .principal-media {
-  flex: 0 0 auto;
+  margin-bottom: 35px;
+  display: flex;
+  justify-content: center;
 }
 
 .principal-text {
-  flex: 1 1 auto;
-  min-width: 0;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: justify;
 }
 
 .principal-card p {
   font-family: 'Lora', serif;
-  font-size: 1.15em;
-  line-height: 1.95;
-  color: #333;
-  margin-bottom: 18px;
+  font-size: 1.3em;
+  line-height: 2;
+  color: #444;
+  margin: 0 auto 25px;
 }
 
 .principal-lead {
-  font-size: 1.25em;
+  font-size: 1.3em;
   color: #1f3b2a;
 }
 
 .principal-image {
-  width: 300px;
-  max-width: 100%;
+  width: min(380px, 90vw);
+  aspect-ratio: 3 / 4;
   height: auto;
   display: block;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  object-fit: cover;
+  border-radius: 14px;
+  border: 10px solid #fff;
+  outline: 2px solid #d4af37;
+  outline-offset: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
+
+.principal-image:hover {
+  transform: scale(1.05);
 }
 
 .principal-quote {
+  max-width: 900px;
+  margin: 0 auto 25px;
   padding: 18px 18px;
-  margin: 16px 0;
   border-left: 4px solid #d4af37;
   background: rgba(30, 86, 49, 0.04);
   border-radius: 10px;
 }
 
 .principal-quote p {
-  margin-bottom: 12px;
+  margin: 0 0 12px;
 }
 
 .principal-quote p:last-child {
@@ -1984,7 +2002,7 @@ body {
 
 @media (max-width: 768px) {
   .principal-section {
-    padding: 55px 15px;
+    padding: 70px 15px;
   }
 
   .principal-title {
@@ -1992,19 +2010,18 @@ body {
   }
 
   .principal-card {
-    padding: 26px;
-    flex-direction: column;
-    gap: 18px;
+    padding: 40px 22px;
   }
 
   .principal-card p {
-    font-size: 1.05em;
+    text-align: left;
+    font-size: 1.1em;
   }
 
   .principal-image {
-    width: 100%;
-    max-width: 360px;
-    margin: 0 auto;
+    width: min(320px, 92vw);
+    aspect-ratio: 3 / 4;
+    height: auto;
   }
 }
 
