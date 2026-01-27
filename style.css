@@ -11,6 +11,7 @@ html {
   overflow-x: hidden;
   width: 100%;
   position: relative;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -74,7 +75,7 @@ body {
 .main-header {
   background: linear-gradient(135deg, #b8b8b8 0%, #d9d9d9 25%, #e8e8e8 50%, #d9d9d9 75%, #b8b8b8 100%);
   border-bottom: 4px solid #2d7a3e;
-  padding: 15px 24px;
+  padding: 15px 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.5);
   position: relative;
   width: 100%;
@@ -86,8 +87,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1400px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   flex-wrap: wrap;
 }
 
@@ -572,15 +573,38 @@ body {
 
 /* Tablets and larger */
 @media (min-width: 768px) {
+  .header-container {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 18px;
+  }
+
+  .logo-section {
+    flex: 0 1 auto;
+    flex-grow: 0;
+    min-width: 0;
+  }
+
+  .header-logo-image {
+    height: 46px !important;
+    margin-left: 8px;
+  }
+
     .college-info h1 {
-        font-size: 28px;
+    font-size: 22px;
     }
 
     .menu ul {
         justify-content: flex-end;
-        gap: 28px;
+    flex-wrap: nowrap;
+    gap: 18px;
         padding-top: 0;
     }
+
+  .menu ul li {
+    white-space: nowrap;
+    font-size: 13px;
+  }
 
     .slider {
         height: 550px;
