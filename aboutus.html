@@ -7,91 +7,184 @@
 <link rel="stylesheet" href="style.css">
 <style>
   .faculty-container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 20px;
+    max-width: 1400px;
+    margin: 60px auto;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  }
+
+  .faculty-header {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
   }
 
   .faculty-title {
-    text-align: center;
+    font-family: 'Cinzel', serif;
     color: #1e5631;
-    font-size: 2.5em;
-    margin-bottom: 10px;
-    font-weight: bold;
+    font-size: 3.2em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .faculty-title::after {
+    content: '';
+    display: block;
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(90deg, #1e5631, #2d7a3e);
+    margin: 20px auto;
+    border-radius: 2px;
   }
 
   .faculty-subtitle {
-    text-align: center;
-    color: #444;
-    font-size: 1.1em;
-    margin-bottom: 30px;
+    font-family: 'Lora', serif;
+    color: #555;
+    font-size: 1.3em;
+    font-style: italic;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
   }
 
-  .pdf-viewer {
-    width: 100%;
-    height: 820px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-    background: #fff;
+  .faculty-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
   }
 
-  .download-box {
-    background: linear-gradient(135deg, #1e5631 0%, #2d7a3e 100%);
-    padding: 30px;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  .faculty-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 35px 30px;
+    box-shadow: 0 8px 30px rgba(30, 86, 49, 0.12);
+    border: 2px solid transparent;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
   }
 
-  .download-box h2 {
-    color: white;
-    margin-bottom: 10px;
-    font-size: 1.8em;
+  .faculty-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #1e5631, #2d7a3e, #d4af37);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
   }
 
-  .download-box p {
-    color: #f0f0f0;
-    margin-bottom: 18px;
-    font-size: 1.1em;
+  .faculty-card:hover::before {
+    transform: scaleX(1);
   }
 
-  .download-actions {
+  .faculty-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 45px rgba(30, 86, 49, 0.2);
+    border-color: rgba(30, 86, 49, 0.1);
+  }
+
+  .faculty-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #1e5631, #2d7a3e);
+    border-radius: 50%;
     display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .download-btn {
-    background-color: white;
-    color: #1e5631;
-    padding: 14px 28px;
-    border: none;
-    border-radius: 6px;
-    font-size: 1.05em;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: inline-flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 32px;
+    color: white;
+    box-shadow: 0 4px 15px rgba(30, 86, 49, 0.3);
   }
 
-  .download-btn:hover {
-    background-color: #f0f0f0;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  .faculty-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 20px;
+    display: block;
+    border: 4px solid #1e5631;
+    box-shadow: 0 4px 15px rgba(30, 86, 49, 0.3);
+  }
+
+  .faculty-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.4em;
+    color: #1e5631;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .faculty-designation {
+    font-family: 'Lora', serif;
+    font-size: 1.05em;
+    color: #2d7a3e;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-align: center;
+    letter-spacing: 0.5px;
+  }
+
+  .faculty-qualification {
+    font-family: 'Georgia', serif;
+    font-size: 0.95em;
+    color: #666;
+    text-align: center;
+    padding-top: 12px;
+    border-top: 1px solid #e0e0e0;
+    font-style: italic;
+  }
+
+  .principal-badge {
+    background: linear-gradient(135deg, #d4af37, #f4d03f);
+    color: #1e5631;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.75em;
+    font-weight: 700;
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-top: 10px;
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
   }
 
   @media (max-width: 768px) {
-    .pdf-viewer {
-      height: 520px;
+    .faculty-container {
+      padding: 30px 15px;
+      margin: 30px auto;
     }
+
     .faculty-title {
-      font-size: 2em;
+      font-size: 2.2em;
+    }
+
+    .faculty-subtitle {
+      font-size: 1.1em;
+    }
+
+    .faculty-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .faculty-card {
+      padding: 28px 22px;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .faculty-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 </style>
@@ -167,21 +260,113 @@
 
 <!-- FACULTY DETAILS CONTENT -->
 <div class="faculty-container">
-  <h1 class="faculty-title">Faculty Details</h1>
-  <p class="faculty-subtitle">View and download the official Faculty Details PDF.</p>
+  <div class="faculty-header">
+    <h1 class="faculty-title">Our Distinguished Faculty</h1>
+    <p class="faculty-subtitle">Meet our dedicated team of experienced educators and researchers committed to excellence in pharmaceutical education</p>
+  </div>
 
-  <!-- PDF Viewer -->
-  <iframe class="pdf-viewer" src="https://drive.google.com/file/d/1fhA0ECeSscFuAELr7mLgd3yFlYljX6D4/preview" type="application/pdf">
-    <p>Your browser does not support PDF preview. Please <a href="https://drive.google.com/file/d/1fhA0ECeSscFuAELr7mLgd3yFlYljX6D4/view?usp=drivesdk" target="_blank">view the PDF</a> on Google Drive.</p>
-  </iframe>
+  <div class="faculty-grid">
+    <!-- Principal -->
+    <div class="faculty-card">
+      <img src="1.jpeg" alt="Dr MOHD MUDASSIR HUSSAIN" class="faculty-image">
+      <h2 class="faculty-name">Dr MOHD MUDASSIR HUSSAIN</h2>
+      <p class="faculty-designation">Professor & Principal</p>
+      <p class="faculty-qualification">M.Pharm, Ph.D</p>
+      <span class="principal-badge">PRINCIPAL</span>
+    </div>
 
-  <!-- Download Box -->
-  <div class="download-box">
-    <h2>Faculty Details PDF</h2>
-    <p>Open in Google Drive or download for offline viewing.</p>
-    <div class="download-actions">
-      <a class="download-btn" href="https://drive.google.com/file/d/1fhA0ECeSscFuAELr7mLgd3yFlYljX6D4/view?usp=drivesdk" target="_blank" rel="noopener">👁 View</a>
-      <a class="download-btn" href="https://drive.google.com/uc?export=download&id=1fhA0ECeSscFuAELr7mLgd3yFlYljX6D4" target="_blank" rel="noopener">⬇ Download</a>
+    <!-- Professor -->
+    <div class="faculty-card">
+      <img src="2.jpeg" alt="Dr GOVULA AMARNATH" class="faculty-image">
+      <h2 class="faculty-name">Dr GOVULA AMARNATH</h2>
+      <p class="faculty-designation">Professor</p>
+      <p class="faculty-qualification">M.Pharm, Ph.D</p>
+    </div>
+
+    <!-- Associate Professors -->
+    <div class="faculty-card">
+      <img src="3.jpeg" alt="Mr VEERABOMMA RAJESH" class="faculty-image">
+      <h2 class="faculty-name">Mr VEERABOMMA RAJESH</h2>
+      <p class="faculty-designation">Associate Professor</p>
+      <p class="faculty-qualification">M.Pharm</p>
+    </div>
+
+    <div class="faculty-card">
+      <img src="4.jpeg" alt="Mrs SYED UZRA ANJUM" class="faculty-image">
+      <h2 class="faculty-name">Mrs SYED UZRA ANJUM</h2>
+      <p class="faculty-designation">Associate Professor</p>
+      <p class="faculty-qualification">M.Pharm</p>
+    </div>
+
+    <div class="faculty-card">
+      <img src="5.jpeg" alt="Mr SYED HASSAN RAZACK" class="faculty-image">
+      <h2 class="faculty-name">Mr SYED HASSAN RAZACK</h2>
+      <p class="faculty-designation">Associate Professor</p>
+      <p class="faculty-qualification">M.Pharm</p>
+    </div>
+
+    <div class="faculty-card">
+      <img src="6.jpeg" alt="Mr KRISHNA RAO PATNANA" class="faculty-image">
+      <h2 class="faculty-name">Mr KRISHNA RAO PATNANA</h2>
+      <p class="faculty-designation">Associate Professor</p>
+      <p class="faculty-qualification">M.Pharm</p>
+    </div>
+
+    <!-- Assistant Professors -->
+    <div class="faculty-card">
+      <img src="7.jpeg" alt="Dr HASNAT FATIMA" class="faculty-image">
+      <h2 class="faculty-name">Dr HASNAT FATIMA</h2>
+      <p class="faculty-designation">Assistant Professor</p>
+      <p class="faculty-qualification">Pharm D</p>
+    </div>
+
+    <div class="faculty-card">
+      <img src="8.jpeg" alt="Miss SHAHISTA BEGUM" class="faculty-image">
+      <h2 class="faculty-name">Miss SHAHISTA BEGUM</h2>
+      <p class="faculty-designation">Assistant Professor</p>
+      <p class="faculty-qualification">M.Pharm</p>
+    </div>
+
+    <div class="faculty-card">
+      <img src="9.jpeg" alt="Mrs AFREEN ANJUM" class="faculty-image">
+      <h2 class="faculty-name">Mrs AFREEN ANJUM</h2>
+      <p class="faculty-designation">Assistant Professor</p>
+      <p class="faculty-qualification">M.Pharm</p>
+    </div>
+
+    <div class="faculty-card">
+      <img src="10.jpeg" alt="Miss AMINA FATIMA" class="faculty-image">
+      <h2 class="faculty-name">Miss AMINA FATIMA</h2>
+      <p class="faculty-designation">Assistant Professor</p>
+      <p class="faculty-qualification">M.Pharm</p>
+    </div>
+
+    <div class="faculty-card">
+      <img src="11.jpeg" alt="Mrs FIRASATH FATIMA" class="faculty-image">
+      <h2 class="faculty-name">Mrs FIRASATH FATIMA</h2>
+      <p class="faculty-designation">Assistant Professor</p>
+      <p class="qualification">M.Pharm</p>
+    </div>
+
+    <div class="faculty-card">
+      <img src="12.jpeg" alt="Miss AMREEN BEGUM" class="faculty-image">
+      <h2 class="faculty-name">Miss AMREEN BEGUM</h2>
+      <p class="faculty-designation">Assistant Professor</p>
+      <p class="faculty-qualification">M.Pharm</p>
+    </div>
+
+    <div class="faculty-card">
+      <img src="13.jpeg" alt="Miss AYESHA JABEEN" class="faculty-image">
+      <h2 class="faculty-name">Miss AYESHA JABEEN</h2>
+      <p class="faculty-designation">Assistant Professor</p>
+      <p class="faculty-qualification">M.Pharm</p>
+    </div>
+
+    <div class="faculty-card">
+      <img src="14.jpeg" alt="Mr ABDUL MUTALIB" class="faculty-image">
+      <h2 class="faculty-name">Mr ABDUL MUTALIB</h2>
+      <p class="faculty-designation">Assistant Professor</p>
+      <p class="faculty-qualification">M.Pharm</p>
     </div>
   </div>
 </div>
