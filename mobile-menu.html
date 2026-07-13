@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu - ISL Pharmacy College</title>
+<link rel="stylesheet" href="style.css">
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #1e5631 0%, #2d7a3e 50%, #1e5631 100%);
+  min-height: 100vh;
+}
+
+/* Mobile menu specific styles */
+.mobile-menu-content {
+  padding: 20px;
+  padding-top: 100px;
+}
+
+.menu-container {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.menu-item {
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  animation: slideIn 0.5s ease forwards;
+  opacity: 0;
+}
+
+.menu-item:nth-child(1) { animation-delay: 0.1s; }
+.menu-item:nth-child(2) { animation-delay: 0.2s; }
+.menu-item:nth-child(3) { animation-delay: 0.3s; }
+.menu-item:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menu-item:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateX(10px);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.menu-item:active {
+  transform: scale(0.98) translateX(10px);
+}
+
+.menu-item a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.footer {
+  margin-top: auto;
+  padding: 40px 20px 20px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+}
+
+@media (max-width: 480px) {
+  .mobile-menu-content {
+    padding-top: 90px;
+  }
+
+  .menu-item {
+    padding: 18px;
+  }
+
+  .menu-item a {
+    font-size: 18px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER - Same as index.html mobile version -->
+<header class="main-header">
+    <div class="header-container">
+        <div class="logo-section">
+            <img src="logo.jpg" alt="ISL Pharmacy College Logo">
+            <div class="college-info">
+                <h1>ISL PHARMACY COLLEGE</h1>
+                <p class="affiliation">Approved by PCI | Affiliated to OSMANIA UNIVERSITY | Approved by TELANGANA GOVT.</p>
+            </div>
+            <img src="assets/logos/header-logo-1.png" alt="ISL Pharmacy Logo" class="header-logo-image">
+            <img src="assets/logos/header-logo-2.png" alt="ISL Pharmacy Logo 2" class="header-logo-image">
+        </div>
+        <button class="menu-toggle" aria-label="Close menu" onclick="goBack()">
+            <div class="hamburger active">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+    </div>
+</header>
+
+<div class="mobile-menu-content">
+  <div class="menu-container">
+    <div class="menu-item">
+      <a href="aboutus.html">FACULTY</a>
+    </div>
+
+    <div class="menu-item">
+      <a href="safety-campus.html">ANTI RAGGING CELL</a>
+    </div>
+
+    <div class="menu-item">
+      <a href="gender-equality.html">GHC</a>
+    </div>
+
+    <div class="menu-item">
+      <a href="student-list.html">STUDENT LIST</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>© 2026 ISL Pharmacy College</p>
+    <p>All Rights Reserved</p>
+  </div>
+</div>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+
+// Add click animation
+document.querySelectorAll('.menu-item').forEach(item => {
+  item.addEventListener('click', function(e) {
+    if (!e.target.closest('a')) {
+      const link = this.querySelector('a');
+      if (link) {
+        link.click();
+      }
+    }
+  });
+});
+</script>
+
+</body>
+</html>

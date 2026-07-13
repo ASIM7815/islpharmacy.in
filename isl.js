@@ -43,16 +43,23 @@ function initMenuToggle() {
     }, 100);
   }
 
-  // Toggle menu on hamburger click
+  // Toggle menu on hamburger click - Navigate to mobile menu page
   menuToggle.addEventListener("click", (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log("Hamburger clicked! Current active state:", menuUl.classList.contains("active"));
+    console.log("Hamburger clicked! Navigating to mobile menu page...");
     
-    if (menuUl.classList.contains("active")) {
-      closeMenu();
+    // Check if we're on mobile (screen width < 768px)
+    if (window.innerWidth < 768) {
+      // Navigate to mobile menu page
+      window.location.href = 'mobile-menu.html';
     } else {
-      openMenu();
+      // Desktop behavior - toggle menu
+      if (menuUl.classList.contains("active")) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
     }
   });
 
