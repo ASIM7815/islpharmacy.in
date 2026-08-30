@@ -112,6 +112,13 @@ body {
   object-fit: contain;
 }
 
+/* New IIC and Innovation logos - larger size */
+.new-logo-iic,
+.new-logo-innovation {
+  height: 80px !important;
+  margin-left: 20px;
+}
+
 .college-info h1 {
   font-size: 24px;
   font-weight: bold;
@@ -604,6 +611,12 @@ body {
   .header-logo-image {
     height: 46px !important;
     margin-left: 8px;
+  }
+
+  /* New logos larger on tablet */
+  .new-logo-iic,
+  .new-logo-innovation {
+    height: 60px !important;
   }
 
     .college-info h1 {
@@ -1259,6 +1272,12 @@ body {
     height: 42px !important;
     margin: 0 5px;
     flex-shrink: 0;
+  }
+
+  /* New logos larger on mobile */
+  .new-logo-iic,
+  .new-logo-innovation {
+    height: 55px !important;
   }
 
   .menu {
