@@ -73,7 +73,7 @@ body {
 
 /* ===== HEADER ===== */
 .main-header {
-  background: linear-gradient(135deg, #b8b8b8 0%, #d9d9d9 25%, #e8e8e8 50%, #d9d9d9 75%, #b8b8b8 100%);
+  background: #E8ECE9;
   border-bottom: 4px solid #2d7a3e;
   padding: 15px 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.5);
@@ -122,7 +122,7 @@ body {
 .college-info h1 {
   font-size: 24px;
   font-weight: bold;
-  color: #1e5631;
+  color: #1e5631; /* Dark green */
   margin-bottom: 2px;
 }
 
@@ -559,31 +559,27 @@ body {
 
 /* ===== RESPONSIVE STYLES ===== */
 
-/* Small mobile devices */
+/* Small mobile devices - Additional adjustments */
 @media (max-width: 375px) {
-  .college-info h1 {
-    font-size: 16px;
-  }
-
-  .logo-section img {
-    height: 50px;
-  }
-
   .main-header {
-    padding: 14px 16px;
+    padding: 10px 12px;
   }
 
-  .logo-section {
-    gap: 10px;
+  .logo-section > img:first-child {
+    height: 36px;
+  }
+
+  .college-info h1 {
+    font-size: 11px;
+    max-width: 140px;
+  }
+
+  .header-logo-image {
+    height: 24px;
   }
 
   .slider {
-    height: 220px;
-  }
-
-  .menu ul li {
-    padding: 14px 20px;
-    font-size: 14px;
+    height: 240px;
   }
 }
 
@@ -1173,151 +1169,127 @@ body {
 
 
 @media (max-width: 767px) {
-  /* Prevent horizontal scroll on mobile */
-  html, body {
-    max-width: 100vw;
-    overflow-x: hidden;
-    position: relative;
-    -webkit-text-size-adjust: 100%;
-  }
-
-  * {
-    max-width: 100%;
-  }
-
+  /* TOP BAR - Hide on mobile */
   .top-bar {
     display: none;
   }
 
+  /* MAIN HEADER - Clean, consolidated styles */
   .main-header {
     padding: 12px 16px;
-    max-width: 100vw;
-    overflow-x: hidden;
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: linear-gradient(135deg, #1e5631 0%, #2d7a3e 100%) !important;
+    background: #E8ECE9;
     border-bottom: 2px solid #2d7a3e;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 
-  /* Hide desktop-only menu items on mobile */
-  .menu ul li.desktop-only {
-    display: none !important;
-  }
-
-  /* Show all items in mobile hamburger menu */
-  .menu ul.active li {
-    display: flex !important;
-  }
-
+  /* HEADER CONTAINER */
   .header-container {
-    max-width: 100%;
-    overflow-x: hidden;
-    padding-right: 60px;
     display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    background: transparent !important;
-  }
-
-  .logo-section {
-    max-width: calc(100% - 60px);
-    flex-wrap: nowrap;
+    justify-content: flex-start;
     gap: 10px;
-    align-items: center;
-    flex-grow: 1;
-    background: transparent !important;
+    padding-right: 60px; /* Space for fixed hamburger */
   }
 
-  .logo-section img {
-    height: 50px;
+  /* LOGO SECTION - Flexible wrapping layout */
+  .logo-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+  }
+
+  /* MAIN COLLEGE LOGO */
+  .logo-section > img:first-child {
+    height: 40px;
     width: auto;
     flex-shrink: 0;
+    order: 1;
   }
 
-  .logo-section > img:first-child {
-    height: 50px;
-  }
-
+  /* COLLEGE INFO - Flexible sizing */
   .college-info {
-    flex: 1;
-    text-align: left;
-    min-width: 0;
+    order: 2;
+    flex: 0 1 auto; /* Don't grow, shrink if needed, auto width */
+    max-width: 180px; /* Prevent greediness */
+    min-width: 0; /* Allow shrinking */
   }
 
   .college-info h1 {
-    font-size: 16px;
-    line-height: 1.2;
-    margin-bottom: 3px;
-    color: #ffffff !important;
+    font-size: 12px;
+    line-height: 1.3;
     font-weight: 700;
+    color: #1e5631;
+    margin: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
-  .college-info p {
-    color: #ffffff !important;
-    font-size: 9px;
-    line-height: 1.3;
-    opacity: 0.95;
-  }
-
+  /* Hide affiliation text on mobile */
+  .college-info p,
   .college-info .affiliation {
-    font-size: 9px;
-    line-height: 1.3;
-    color: #ffffff !important;
-    opacity: 0.95;
+    display: none;
   }
 
+  /* CERTIFICATION LOGOS - After college name */
   .header-logo-image {
-    height: 42px !important;
-    margin: 0 5px;
+    height: 28px;
+    width: auto;
     flex-shrink: 0;
+    order: 3;
+    margin: 0 2px;
   }
 
-  /* New logos larger on mobile */
+  /* Hide IIC and Innovation logos on mobile to save space */
   .new-logo-iic,
   .new-logo-innovation {
-    height: 55px !important;
+    display: none;
   }
 
-  .menu {
-      width: 100%;
-      margin-left: 0;
-      position: static;
-  }
-
-  /* Reset default menu styles for mobile */
+  /* DESKTOP MENU - Hide on mobile */
   .menu ul {
     display: none;
-    list-style: none;
-    flex-wrap: nowrap;
-    padding-top: 0;
-    gap: 0;
   }
 
-  /* Full-page menu overlay when active */
+  /* HAMBURGER MENU TOGGLE - Fixed position */
+  .menu-toggle {
+    display: flex !important;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100002;
+  }
+
+  /* MOBILE MENU OVERLAY - Full screen when active */
   .menu ul.active {
     display: flex !important;
-    visibility: visible !important;
     flex-direction: column;
-    width: 100vw;
-    min-height: 100vh;
-    height: 100vh;
-    background: linear-gradient(135deg, #1e5631 0%, #2d7a3e 50%, #1e5631 100%);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #1e5631 0%, #2d7a3e 50%, #1e5631 100%);
     z-index: 99999;
-    padding: 100px 30px 40px 30px;
+    padding: 100px 30px 40px;
     margin: 0;
-    animation: slideInMenu 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     overflow-y: auto;
-    overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
-    justify-content: flex-start;
-    opacity: 1 !important;
+    animation: slideInMenu 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   }
 
   @keyframes slideInMenu {
@@ -1331,7 +1303,7 @@ body {
     }
   }
 
-  /* Close icon in menu */
+  /* Close button in menu */
   .menu ul.active::before {
     content: "✕";
     position: fixed;
@@ -1341,8 +1313,6 @@ body {
     font-size: 32px;
     color: rgba(255, 255, 255, 0.9);
     font-weight: 300;
-    text-align: center;
-    cursor: pointer;
     width: 50px;
     height: 50px;
     display: flex;
@@ -1351,33 +1321,28 @@ body {
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
+    cursor: pointer;
   }
 
-  /* Modern menu items */
+  /* Mobile menu items */
   .menu ul li {
-    padding: 16px 20px;
-    margin: 0;
+    padding: 18px 20px;
+    margin-bottom: 12px;
     text-align: center;
-    border: none;
     font-size: 18px;
     color: #ffffff;
-    position: relative;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     background: rgba(255, 255, 255, 0.05);
     font-weight: 600;
-    letter-spacing: 0.5px;
-    height: auto;
-    min-height: 56px;
-    display: flex !important;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 12px;
-    margin-bottom: 10px;
+    min-height: 56px;
     opacity: 0;
     animation: fadeInItem 0.4s ease forwards;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   @keyframes fadeInItem {
@@ -1392,128 +1357,35 @@ body {
   }
 
   .menu ul li:nth-child(1) { animation-delay: 0.1s; }
-  .menu ul li:nth-child(2) { animation-delay: 0.15s; }
-  .menu ul li:nth-child(3) { animation-delay: 0.2s; }
-  .menu ul li:nth-child(4) { animation-delay: 0.25s; }
-  .menu ul li:nth-child(5) { animation-delay: 0.3s; }
-  .menu ul li:nth-child(6) { animation-delay: 0.35s; }
-  .menu ul li:nth-child(7) { animation-delay: 0.4s; }
-  .menu ul li:nth-child(8) { animation-delay: 0.45s; }
-  .menu ul li:nth-child(9) { animation-delay: 0.5s; }
-  .menu ul li:nth-child(10) { animation-delay: 0.55s; }
-  .menu ul li:nth-child(11) { animation-delay: 0.6s; }
-  .menu ul li:nth-child(12) { animation-delay: 0.65s; }
-  .menu ul li:nth-child(13) { animation-delay: 0.7s; }
-  .menu ul li:nth-child(14) { animation-delay: 0.75s; }
-  .menu ul li:nth-child(15) { animation-delay: 0.8s; }
+  .menu ul li:nth-child(2) { animation-delay: 0.2s; }
+  .menu ul li:nth-child(3) { animation-delay: 0.3s; }
+  .menu ul li:nth-child(4) { animation-delay: 0.4s; }
 
-  .menu ul li:hover {
+  .menu ul li:hover,
+  .menu ul li:active {
     background: rgba(255, 255, 255, 0.15);
     transform: translateX(8px);
-    border-color: rgba(255, 255, 255, 0.3);
   }
 
-  .menu ul li:active {
-    transform: scale(0.98) translateX(8px);
-  }
-
-  .menu ul li:last-child {
-    margin-bottom: 0;
-  }
-
-  .menu ul li.mobile-only {
-    display: flex;
-    font-size: 17px;
-    color: rgba(255, 255, 255, 0.95);
-    background: rgba(255, 255, 255, 0.08);
-    font-weight: 500;
+  /* SLIDER - Adjust height for mobile */
+  .slider {
+    height: 280px;
     margin-top: 0;
   }
-
-  .menu ul li.mobile-only:first-of-type {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    position: relative;
-  }
-
-  .menu ul li.mobile-only:first-of-type::before {
-    content: "MORE";
-    position: absolute;
-    top: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 10px;
-    color: rgba(255, 255, 255, 0.5);
-    font-weight: 600;
-    letter-spacing: 2px;
-  }
-
-  .menu ul li:active {
-    background: rgba(255, 255, 255, 0.15);
-    transform: scale(0.98);
-  }
   
-  .header-container {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    padding: 0;
-    max-width: 100%;
+  .slider button {
+    padding: 8px 10px;
+    font-size: 14px;
+    min-width: 36px;
+    min-height: 36px;
   }
 
-  .main-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: #ffffff;
-    padding: 16px 20px;
-    box-shadow: 0 4px 12px rgba(30, 86, 49, 0.08);
+  .slider .prev {
+    left: 8px;
   }
 
-  /* Keep menu toggle above menu */
-  .main-header .menu-toggle {
-    z-index: 100002;
-  }
-
-  .logo-section {
-    gap: 12px;
-    align-items: center;
-    flex-grow: 0;
-    max-width: calc(100% - 60px);
-  }
-
-  .logo-section img {
-    height: 55px;
-    width: auto;
-    flex-shrink: 0;
-  }
-
-  .college-info {
-    flex: 1;
-    overflow: hidden;
-  }
-
-  .college-info h1 {
-    font-size: 18px;
-    line-height: 1.2;
-    text-align: left;
-    margin: 0;
-    color: #1e5631;
-    font-weight: 700;
-    letter-spacing: 0.3px;
-  }
-  
-  .college-info p {
-      font-size: 9px;
-      line-height: 1.4;
-  }
-
-  .logo-circle {
-      width: 50px;
-      height: 50px;
-      font-size: 20px;
+  .slider .next {
+    right: 8px;
   }
 }
 
@@ -2343,101 +2215,6 @@ img {
   }
 }
 
-@media (max-width: 767px) {
-  /* Header layout: prevent logo overflow and center content */
-  .header-container {
-    gap: 10px;
-    padding-right: 60px;
-    background: transparent !important;
-  }
-
-  .logo-section {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    gap: 10px;
-    max-width: calc(100% - 60px);
-    background: transparent !important;
-  }
-
-  /* Main logo (the first image without .header-logo-image) */
-  .logo-section > img:not(.header-logo-image) {
-    height: 50px;
-  }
-
-  .college-info {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .college-info h1 {
-    font-size: 16px;
-    line-height: 1.2;
-    width: 100%;
-    text-align: left;
-    color: #ffffff !important;
-  }
-
-  .college-info .affiliation {
-    font-size: 9px;
-    line-height: 1.35;
-    max-width: 100%;
-    color: #ffffff !important;
-    opacity: 0.95;
-  }
-
-  .college-info p {
-    line-height: 1.3;
-    color: #ffffff !important;
-  }
-
-  .header-logo-image {
-    height: 42px !important;
-    margin-left: 0;
-    margin-top: 0;
-    margin-right: 5px;
-  }
-
-  /* Hamburger placement: keep away from content edges */
-  .menu-toggle {
-    top: 14px;
-    right: 14px;
-    background: rgba(255, 255, 255, 0.2) !important;
-  }
-
-  .menu-toggle .hamburger span {
-    background: #ffffff !important;
-  }
-
-  .menu-toggle.active {
-    background: rgba(30, 86, 49, 0.9) !important;
-  }
-
-  /* Hide desktop-only items on mobile */
-  .menu ul li.desktop-only {
-    display: none !important;
-  }
-
-  /* Mobile menu: better spacing and tap targets */
-  .menu ul.active {
-    padding: 90px 20px 30px 20px;
-  }
-
-  .menu ul.active li {
-    display: flex !important;
-  }
-
-  .menu ul li {
-    font-size: 18px;
-    padding: 16px 20px;
-    min-height: 56px;
-  }
-
-  /* Slider buttons: slightly lower profile */
-  .slider button {
-    min-width: 36px;
-    min-height: 36px;
-  }
-}
 
 @media (max-width: 480px) {
   .college-info h1 {
