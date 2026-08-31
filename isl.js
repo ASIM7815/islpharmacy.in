@@ -43,23 +43,17 @@ function initMenuToggle() {
     }, 100);
   }
 
-  // Toggle menu on hamburger click - Navigate to mobile menu page
+  // Toggle menu on hamburger click
   menuToggle.addEventListener("click", (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log("Hamburger clicked! Navigating to mobile menu page...");
+    console.log("Hamburger clicked! Toggling menu...");
     
-    // Check if we're on mobile (screen width < 768px)
-    if (window.innerWidth < 768) {
-      // Navigate to mobile menu page
-      window.location.href = 'mobile-menu.html';
+    // Toggle menu for both mobile and desktop
+    if (menuUl.classList.contains("active")) {
+      closeMenu();
     } else {
-      // Desktop behavior - toggle menu
-      if (menuUl.classList.contains("active")) {
-        closeMenu();
-      } else {
-        openMenu();
-      }
+      openMenu();
     }
   });
 
@@ -88,6 +82,19 @@ function initMenuToggle() {
       console.log("Escape key pressed");
       closeMenu();
     }
+  });
+
+  // Close menu when resizing from mobile to desktop
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      // If window is resized to desktop size (>= 768px), close mobile menu
+      if (window.innerWidth >= 768 && menuUl.classList.contains("active")) {
+        console.log("Resized to desktop - closing mobile menu");
+        closeMenu();
+      }
+    }, 250);
   });
 
   // Prevent scroll when touching the menu overlay
