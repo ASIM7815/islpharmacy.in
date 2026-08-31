@@ -42,6 +42,12 @@ body {
   backdrop-filter: blur(10px);
   animation: slideIn 0.5s ease forwards;
   opacity: 0;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .menu-item:nth-child(1) { animation-delay: 0.1s; }
@@ -74,9 +80,11 @@ body {
   color: white;
   text-decoration: none;
   display: block;
+  width: 100%;
   font-size: 20px;
   font-weight: 600;
   letter-spacing: 0.5px;
+  pointer-events: none; /* Let parent handle clicks */
 }
 
 .footer {
@@ -128,19 +136,19 @@ body {
 
 <div class="mobile-menu-content">
   <div class="menu-container">
-    <div class="menu-item">
+    <div class="menu-item" onclick="navigateTo('aboutus.html')">
       <a href="aboutus.html">FACULTY</a>
     </div>
 
-    <div class="menu-item">
+    <div class="menu-item" onclick="navigateTo('safety-campus.html')">
       <a href="safety-campus.html">ANTI RAGGING CELL</a>
     </div>
 
-    <div class="menu-item">
+    <div class="menu-item" onclick="navigateTo('gender-equality.html')">
       <a href="gender-equality.html">GHC</a>
     </div>
 
-    <div class="menu-item">
+    <div class="menu-item" onclick="navigateTo('student-list.html')">
       <a href="student-list.html">STUDENT LIST</a>
     </div>
   </div>
@@ -152,21 +160,33 @@ body {
 </div>
 
 <script>
-function goBack() {
-  window.history.back();
+// Navigate to a page
+function navigateTo(url) {
+  console.log('Navigating to:', url);
+  window.location.href = url;
 }
 
-// Add click animation
-document.querySelectorAll('.menu-item').forEach(item => {
-  item.addEventListener('click', function(e) {
-    if (!e.target.closest('a')) {
-      const link = this.querySelector('a');
-      if (link) {
-        link.click();
-      }
-    }
+// Go back to previous page
+function goBack() {
+  console.log('Going back');
+  if (document.referrer && document.referrer !== window.location.href) {
+    window.history.back();
+  } else {
+    // Fallback to homepage if no referrer
+    window.location.href = 'index.html';
+  }
+}
+
+// Prevent event bubbling on links
+document.querySelectorAll('.menu-item a').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.stopPropagation();
+    console.log('Link clicked:', this.href);
   });
 });
+
+// Log when page loads
+console.log('Mobile menu page loaded');
 </script>
 
 </body>

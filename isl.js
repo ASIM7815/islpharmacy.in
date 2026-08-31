@@ -47,13 +47,20 @@ function initMenuToggle() {
   menuToggle.addEventListener("click", (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log("Hamburger clicked! Toggling menu...");
+    console.log("Hamburger clicked!");
     
-    // Toggle menu for both mobile and desktop
-    if (menuUl.classList.contains("active")) {
-      closeMenu();
+    // Check if we're on mobile (screen width < 768px)
+    if (window.innerWidth < 768) {
+      // Navigate to mobile menu page on mobile
+      console.log("Mobile detected - navigating to mobile-menu.html");
+      window.location.href = 'mobile-menu.html';
     } else {
-      openMenu();
+      // Desktop behavior - toggle menu
+      if (menuUl.classList.contains("active")) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
     }
   });
 
